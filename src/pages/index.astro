@@ -11,7 +11,6 @@ import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { Hero } from '~/components/blocks/Hero';
 import { HeroFragment } from '~/components/blocks/Hero/fragments';
 
-
 /**
  * The GraphQL query that will be executed for this route to generate the page
  * content and metadata.
@@ -41,7 +40,7 @@ const query = graphql(
       }
     }
   `,
-  [TagFragment, HeroFragment]
+  [TagFragment, HeroFragment],
 );
 
 const draftModeEnabled = isDraftModeEnabled(Astro.cookies);

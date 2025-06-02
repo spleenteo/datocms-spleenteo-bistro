@@ -1,0 +1,16 @@
+---
+import { type FragmentOf, readFragment } from '~/lib/datocms/graphql';
+import { HeroFragment } from './fragments';
+
+interface Props {
+  block: FragmentOf<typeof HeroFragment>;
+}
+const { block } = Astro.props;
+
+// Read unmasked block from fragment
+const unmaskedBlock = readFragment(HeroFragment, block);
+---
+
+<section class="relative md:-mt-[76px] not-prose">
+  <h1>{unmaskedBlock.title}</h1>
+</section>

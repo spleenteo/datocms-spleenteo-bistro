@@ -7,10 +7,6 @@ import tailwind from '@astrojs/tailwind';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
-
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
@@ -18,8 +14,10 @@ export default defineConfig({
     checkOrigin: false,
   },
   integrations: [
+    react(),
     tailwind({
       applyBaseStyles: false,
+      configFile: './tailwind.config.js',
     }),
   ],
   vite: {
@@ -58,5 +56,4 @@ export default defineConfig({
     },
     validateSecrets: true,
   },
-  integrations: [react()],
 });

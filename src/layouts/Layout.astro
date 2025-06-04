@@ -1,6 +1,7 @@
 ---
 import '~/assets/styles/tailwind.css';
 import CustomStyles from '~/components/CustomStyles.astro';
+import ApplyColorMode from '~/components/commons/ApplyColorMode.astro';
 
 import { TagFragment } from '~/lib/datocms/commonFragments';
 import { executeQuery } from '~/lib/datocms/executeQuery';
@@ -42,6 +43,28 @@ const result = await executeQuery(query, { includeDrafts: draftModeEnabled });
     <meta name="generator" content={Astro.generator} />
     <Seo data={[...result._site.faviconMetaTags, ...additionalSeo]} />
     <CustomStyles />
+    <ApplyColorMode />
+    <script is:inline>
+      // Theme toggle functionality
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButtons = document.querySelectorAll('[data-aw-toggle-color-scheme]');
+        
+        toggleButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const currentTheme = localStorage.theme;
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            localStorage.theme = newTheme;
+            
+            if (newTheme === 'dark') {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+          });
+        });
+      });
+    </script>
   </head>
   <body class="antialiased text-default bg-page tracking-tight">
     <slot name="announcement">

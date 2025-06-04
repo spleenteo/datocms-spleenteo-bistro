@@ -10,6 +10,7 @@ import { Seo, type TitleMetaLinkTag } from '@datocms/astro';
 import { isDraftModeEnabled } from '~/lib/draftMode';
 import Announcement from '~/components/Announcement.astro';
 import { Header } from '~/components/Header';
+import { Footer } from '~/components/Footer';
 
 type Props = {
   additionalSeo?: TitleMetaLinkTag[];
@@ -53,5 +54,9 @@ const result = await executeQuery(query, { includeDrafts: draftModeEnabled });
     <main>
       <slot />
     </main>
+    <slot name="footer">
+      <Footer />
+    </slot>
+
   </body>
 </html>

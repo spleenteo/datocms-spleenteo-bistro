@@ -109,7 +109,12 @@ export const SOCIAL_ICON_MAPPING = {
 type ModelType = keyof typeof ROUTE_MAPPING;
 
 // Function to build localized URLs
-export function buildLocalizedUrl(slug: string, modelType: ModelType, locale: string, defaultLocale: string) {
+export function buildLocalizedUrl(
+  slug: string,
+  modelType: ModelType,
+  locale: string,
+  defaultLocale: string,
+) {
   const basePath = ROUTE_MAPPING[modelType];
   // With prefixDefaultLocale: true, all locales need prefixes
   return `/${locale}${basePath}/${slug}`;

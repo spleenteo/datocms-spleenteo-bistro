@@ -4,6 +4,9 @@ import { defineConfig, envField } from 'astro/config';
 
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import icon from 'astro-icon';
+
+import astrowind from './src/vendor/integration';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +21,26 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
       configFile: './tailwind.config.js',
+    }),
+    astrowind({
+      config: './src/config.yaml',
+    }),
+
+    icon({
+      include: {
+        tabler: ['*'],
+        'flat-color-icons': [
+          'template',
+          'gallery',
+          'approval',
+          'document',
+          'advertising',
+          'currency-exchange',
+          'voice-presentation',
+          'business-contact',
+          'database',
+        ],
+      },
     }),
   ],
   vite: {

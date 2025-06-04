@@ -8,6 +8,8 @@ import { graphql } from '~/lib/datocms/graphql';
 import { DraftModeToggler } from '~/components/DraftModeToggler';
 import { Seo, type TitleMetaLinkTag } from '@datocms/astro';
 import { isDraftModeEnabled } from '~/lib/draftMode';
+import Announcement from '~/components/Announcement.astro';
+import { Header } from '~/components/Header';
 
 type Props = {
   additionalSeo?: TitleMetaLinkTag[];
@@ -37,17 +39,16 @@ const result = await executeQuery(query, { includeDrafts: draftModeEnabled });
   <head>
     <meta charset="UTF-8" />
     <meta name="generator" content={Astro.generator} />
-    <CustomStyles />
     <Seo data={[...result._site.faviconMetaTags, ...additionalSeo]} />
+    <CustomStyles />
   </head>
   <body class="antialiased text-default bg-page tracking-tight">
-    <header>
-      <h1>DatoCMS + Astro Starter Kit</h1>
-      <nav>
-        <a class="navlink" href="https://www.datocms.com/docs/astro"> 📚 Full Integration Guide </a>
-        <DraftModeToggler />
-      </nav>
-    </header>
+    <slot name="announcement">
+      <Announcement />
+    </slot>
+    <slot name="header">
+      <Header isSticky showRssFeed showToggleTheme />
+    </slot>
 
     <main>
       <slot />

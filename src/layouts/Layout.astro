@@ -48,14 +48,14 @@ const result = await executeQuery(query, { includeDrafts: draftModeEnabled });
       // Theme toggle functionality
       document.addEventListener('DOMContentLoaded', () => {
         const toggleButtons = document.querySelectorAll('[data-aw-toggle-color-scheme]');
-        
-        toggleButtons.forEach(button => {
+
+        toggleButtons.forEach((button) => {
           button.addEventListener('click', () => {
             const currentTheme = localStorage.theme;
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
+
             localStorage.theme = newTheme;
-            
+
             if (newTheme === 'dark') {
               document.documentElement.classList.add('dark');
             } else {

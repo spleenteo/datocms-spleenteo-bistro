@@ -2,7 +2,6 @@ import { getRssString } from '@astrojs/rss';
 import { fetchPosts } from '~/utils/blog';
 import { SITE, METADATA, APP_BLOG } from 'astrowind:config';
 
-
 export const GET = async () => {
   const posts = await fetchPosts(); // Your post fetchin logic
   if (!APP_BLOG.isEnabled) {
